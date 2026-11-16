@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Leandro Rocha — Portfolio de Ingeniería</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#ffffff; --ink:#111214; --ink-2:#3a3d42; --muted:#6f737a; --line:#d9dcdf; --line-2:#eceef0;
+  --accent:#0a3d62; --grid:#eef0f2; --max:1120px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scrollbar-width:thin}
+body{margin:0;font-family:"IBM Plex Sans",system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.5;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+.mono{font-family:"IBM Plex Mono",ui-monospace,monospace}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 28px}
+[data-i18n-hide]{display:none}
+
+/* demo banner */
+.demo{background:var(--ink);color:#fff;font-size:12.5px;text-align:center;padding:7px 14px;letter-spacing:.01em}
+.demo b{font-weight:600;text-decoration:underline;text-underline-offset:3px}
+
+/* topbar */
+.top{position:sticky;top:0;z-index:30;background:#fff;border-bottom:1px solid var(--line)}
+.top .wrap{display:flex;align-items:center;justify-content:space-between;height:56px}
+.brand{font-weight:600;font-size:14px;letter-spacing:.02em}
+.brand small{color:var(--muted);font-weight:400;margin-left:10px}
+.topnav{display:flex;gap:22px;font-size:13px;color:var(--muted)}
+.topnav a:hover{color:var(--ink)}
+.lang{display:flex;border:1px solid var(--line)}
+.lang button{border:0;background:#fff;font:inherit;font-size:12px;padding:6px 10px;cursor:pointer;color:var(--muted);letter-spacing:.06em}
+.lang button+button{border-left:1px solid var(--line)}
+.lang button.on{background:var(--ink);color:#fff}
+@media(max-width:860px){.topnav{display:none}}
+
+/* hero */
+.hero{border-bottom:1px solid var(--line);background:
+  linear-gradient(var(--grid) 1px,transparent 1px) 0 0/32px 32px,
+  linear-gradient(90deg,var(--grid) 1px,transparent 1px) 0 0/32px 32px}
+.hero .wrap{display:grid;grid-template-columns:1.2fr .8fr;gap:40px;padding:64px 28px 56px}
+.eyebrow{font-family:"IBM Plex Mono",monospace;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--accent)}
+h1{font-size:clamp(34px,5vw,56px);line-height:1.05;font-weight:600;letter-spacing:-.02em;margin:14px 0 18px}
+.lead{font-size:17px;color:var(--ink-2);max-width:58ch;margin:0}
+.cta{display:flex;gap:10px;margin-top:26px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:11px 16px;font-size:13.5px;font-weight:500;border:1px solid var(--ink);background:#fff}
+.btn.primary{background:var(--ink);color:#fff}
+.btn:hover{border-color:var(--accent)}
+.sheet{background:#fff;border:1px solid var(--ink)}
+.sheet .hd{display:flex;justify-content:space-between;align-items:center;padding:10px 14px;border-bottom:1px solid var(--ink);font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase}
+.sheet table{width:100%;border-collapse:collapse;font-size:13.5px}
+.sheet td{padding:10px 14px;border-bottom:1px solid var(--line-2);vertical-align:top}
+.sheet td:first-child{color:var(--muted);width:38%}
+.sheet tr:last-child td{border-bottom:0}
+@media(max-width:860px){.hero .wrap{grid-template-columns:1fr;padding-top:44px}}
+
+/* stats */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--ink);margin-top:-1px}
+.stat{padding:22px 20px 18px;border-right:1px solid var(--ink)}
+.stat:last-child{border-right:0}
+.stat .n{font-family:"IBM Plex Mono",monospace;font-size:34px;font-weight:500;letter-spacing:-.02em;line-height:1}
+.stat .l{font-size:12.5px;color:var(--muted);margin-top:8px}
+@media(max-width:860px){.stats{grid-template-columns:repeat(2,1fr)}.stat:nth-child(2){border-right:0}.stat:nth-child(1),.stat:nth-child(2){border-bottom:1px solid var(--ink)}}
+
+section{padding:64px 0}
+.sec-h{display:block;margin-bottom:28px;padding-top:14px;border-top:2px solid var(--ink)}
+.sec-h .idx{margin-bottom:10px;font-family:"IBM Plex Mono",monospace;font-size:12px;letter-spacing:.08em;color:var(--muted)}
+.sec-h h2{margin:0;font-size:26px;font-weight:600;letter-spacing:-.01em}
+.sec-h p{margin:8px 0 0;color:var(--muted);font-size:14px;max-width:70ch}
+@media(max-width:760px){.sec-h{grid-template-columns:1fr}}
+
+/* fit boxes */
+.fit{display:grid;grid-template-columns:repeat(3,1fr);border:1px solid var(--ink)}
+.fit .box{padding:20px;border-right:1px solid var(--ink)}
+.fit .box:last-child{border-right:0}
+.fit h4{margin:0 0 10px;font-size:13px;font-weight:600}
+.fit h4 span{font-family:"IBM Plex Mono",monospace;color:var(--accent);margin-right:8px;font-weight:500}
+.fit ul{margin:0;padding-left:16px;font-size:13.5px;color:var(--ink-2)}
+.fit li{margin:4px 0}
+@media(max-width:860px){.fit{grid-template-columns:1fr}.fit .box{border-right:0;border-bottom:1px solid var(--ink)}.fit .box:last-child{border-bottom:0}}
+
+/* filter + grid */
+.filter{display:flex;gap:0;flex-wrap:wrap;align-items:center;margin-bottom:20px;font-size:13px}
+.filter span{color:var(--muted);margin-right:12px}
+.filter .f{border:1px solid var(--line);border-left:0;background:#fff;font:inherit;font-size:12.5px;padding:7px 12px;cursor:pointer;color:var(--ink-2)}
+.filter .f:first-of-type{border-left:1px solid var(--line)}
+.filter .f.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:1px solid var(--ink);border-left:1px solid var(--ink)}
+.card{border-right:1px solid var(--ink);border-bottom:1px solid var(--ink);background:#fff;display:flex;flex-direction:column;transition:opacity .2s}
+.card.dim{opacity:.25}
+.wlist{margin-top:20px;overflow-x:auto}
+.wlist table{width:100%;border-collapse:collapse;font-size:13.5px}
+.wlist th{text-align:left;font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:500;padding:8px 12px;border-bottom:2px solid var(--ink)}
+.wlist td{padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top;color:var(--ink-2)}
+.wlist td:first-child{color:var(--ink);font-weight:500;white-space:nowrap}
+.wlist .num{text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}
+.wlist tr.card{display:table-row;border:0;background:none}
+.thumb{aspect-ratio:4/3;border-bottom:1px solid var(--ink);position:relative;background:#fff}
+.thumb svg{width:100%;height:100%;display:block}
+.thumb svg[hidden]{display:none}
+.thumb .wimg{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;display:block;padding:34px 12px 10px;box-sizing:border-box;cursor:zoom-in}
+.thumb .wimg.ph{object-fit:cover;padding:0}
+.thumb .tag{z-index:1}
+.card .wgo{font-size:13px;font-weight:500;color:var(--accent);text-decoration:none;margin-top:4px}
+.card .wgo:hover{text-decoration:underline}
+.tag{position:absolute;top:10px;left:10px;font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;background:#fff;border:1px solid var(--ink);padding:3px 7px}
+.card .body{padding:16px;display:flex;flex-direction:column;gap:8px;flex:1}
+.card h3{margin:0;font-size:15.5px;font-weight:600;line-height:1.3}
+.card .meta{font-size:12.5px;color:var(--muted)}
+.specs{display:grid;grid-template-columns:repeat(3,1fr);border:1px solid var(--line);margin-top:4px}
+.spec{padding:8px 10px;border-right:1px solid var(--line)}
+.spec:last-child{border-right:0}
+.spec .v{font-family:"IBM Plex Mono",monospace;font-weight:500;font-size:13.5px}
+.spec .k{font-size:10.5px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-top:2px}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:auto;padding-top:8px}
+.chip{font-size:11px;border:1px solid var(--line);padding:3px 8px;color:var(--ink-2)}
+@media(max-width:960px){.grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:620px){.grid{grid-template-columns:1fr}}
+
+/* process */
+.steps{display:grid;grid-template-columns:repeat(6,1fr);border:1px solid var(--ink)}
+.step{padding:18px 16px;border-right:1px solid var(--ink)}
+.step:last-child{border-right:0}
+.step .num{font-family:"IBM Plex Mono",monospace;font-size:11px;color:var(--accent);letter-spacing:.08em}
+.step h4{margin:8px 0 6px;font-size:14px;font-weight:600}
+.step p{margin:0;font-size:12.5px;color:var(--muted)}
+@media(max-width:960px){.steps{grid-template-columns:repeat(3,1fr)}.step:nth-child(3){border-right:0}.step:nth-child(-n+3){border-bottom:1px solid var(--ink)}}
+@media(max-width:620px){.steps{grid-template-columns:repeat(2,1fr)}.step{border-right:1px solid var(--ink)!important;border-bottom:1px solid var(--ink)}.step:nth-child(2n){border-right:0!important}}
+
+/* skills */
+.skills{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
+.skillbox h4{margin:0 0 10px;font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.row{display:grid;grid-template-columns:1fr 160px auto;align-items:center;gap:14px;font-size:13.5px;padding:9px 0;border-top:1px solid var(--line)}
+.row small{color:var(--muted);font-family:"IBM Plex Mono",monospace;font-size:11.5px;white-space:nowrap}
+.scale{display:grid;grid-template-columns:repeat(10,1fr);gap:2px;height:8px}
+.scale i{background:var(--line)}
+.scale i.on{background:var(--ink)}
+@media(max-width:960px){.skills{grid-template-columns:1fr 1fr}}
+@media(max-width:760px){.skills{grid-template-columns:1fr}}
+
+/* timeline */
+.tl{border-left:1px solid var(--ink);margin-left:6px}
+.tl .item{position:relative;padding:0 0 26px 26px}
+.tl .item::before{content:"";position:absolute;left:-5px;top:7px;width:9px;height:9px;background:#fff;border:1px solid var(--ink)}
+.tl .when{font-family:"IBM Plex Mono",monospace;font-size:11.5px;color:var(--muted);letter-spacing:.02em}
+.tl h4{margin:4px 0;font-size:15.5px;font-weight:600}
+.tl p{margin:0;color:var(--ink-2);font-size:13.5px;max-width:72ch}
+
+/* software */
+.soft{display:grid;grid-template-columns:1.1fr .9fr;border:1px solid var(--ink)}
+.soft .l{padding:28px;border-right:1px solid var(--ink)}
+.soft h2{margin:8px 0 10px;font-size:24px;font-weight:600}
+.soft p{color:var(--ink-2);margin:0 0 18px;font-size:14px;max-width:60ch}
+.soft .r{padding:22px;font-family:"IBM Plex Mono",monospace;font-size:12.5px;line-height:1.8;color:var(--ink-2);background:
+  linear-gradient(var(--grid) 1px,transparent 1px) 0 0/16px 16px,linear-gradient(90deg,var(--grid) 1px,transparent 1px) 0 0/16px 16px}
+.soft .r b{color:var(--ink);font-weight:500}
+@media(max-width:860px){.soft{grid-template-columns:1fr}.soft .l{border-right:0;border-bottom:1px solid var(--ink)}}
+
+/* contact */
+.contact{display:grid;grid-template-columns:1fr 1fr;border:1px solid var(--ink)}
+.contact .l{padding:28px;border-right:1px solid var(--ink)}
+.contact h2{margin:0 0 8px;font-size:24px;font-weight:600}
+.contact p{margin:0;color:var(--ink-2);font-size:14px}
+.contact table{width:100%;border-collapse:collapse;font-size:14px}
+.contact td{padding:12px 16px;border-bottom:1px solid var(--line-2)}
+.contact td:first-child{color:var(--muted);width:30%;font-family:"IBM Plex Mono",monospace;font-size:11.5px;text-transform:uppercase;letter-spacing:.06em}
+.contact tr:last-child td{border-bottom:0}
+.contact a{text-decoration:underline;text-underline-offset:3px}
+@media(max-width:760px){.contact{grid-template-columns:1fr}.contact .l{border-right:0;border-bottom:1px solid var(--ink)}}
+footer{padding:28px 0 44px;color:var(--muted);font-size:12.5px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
+.skills .row{display:flex;justify-content:space-between;align-items:baseline;gap:12px}
+.plans-h{margin:36px 0 14px;font-size:17px;font-weight:600}
+.plans{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.plans figure{margin:0;border:1px solid var(--ink);background:#fff;display:flex;flex-direction:column}
+.plans img{display:block;width:100%;height:320px;object-fit:contain;background:#fff;padding:10px}
+.plans figcaption{border-top:1px solid var(--ink);padding:10px 14px;font-size:12.5px;color:var(--ink-2)}
+@media (max-width:700px){.plans{grid-template-columns:1fr}.plans img{height:240px}}
+.ftabs{display:grid;grid-template-columns:repeat(auto-fill,minmax(118px,1fr));gap:12px;margin-bottom:28px}
+.ftab{display:grid;grid-template-columns:auto 1fr;column-gap:8px;row-gap:2px;text-align:left;background:#fff;border:1px solid var(--line);padding:0 0 10px;font:inherit;color:var(--ink-2);cursor:pointer;transition:border-color .15s}
+.ftab img{grid-column:1/-1;width:100%;aspect-ratio:16/9;object-fit:cover;display:block;margin-bottom:8px;filter:grayscale(.6);opacity:.8;transition:filter .2s,opacity .2s}
+.ftab .n{grid-row:span 2;padding-left:10px;font-size:11px;color:var(--muted);font-variant-numeric:tabular-nums;padding-top:2px}
+.ftab .c{font-size:13px;font-weight:600;color:var(--ink);padding-right:10px}
+.ftab .a{font-size:12px;color:var(--muted);font-variant-numeric:tabular-nums}
+.ftab:hover{border-color:var(--ink-2)}.ftab:hover img,.ftab.on img{filter:none;opacity:1}
+.ftab.on{border-color:var(--ink);box-shadow:inset 0 -3px 0 var(--accent)}
+.ftab:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.feats.js .feat{display:none}.feats.js .feat.on{display:block;animation:featIn .25s ease}
+@keyframes featIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.feats.js .feat.on{animation:none}}
+@media (max-width:460px){.ftabs{grid-template-columns:repeat(2,1fr)}}
+.hfeat{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.hcard{display:flex;flex-direction:column;border:1px solid var(--ink);background:#fff;color:inherit;text-decoration:none;transition:transform .2s,box-shadow .2s}
+.hcard:hover{transform:translateY(-3px);box-shadow:0 10px 24px rgba(17,18,20,.10)}
+.hcard img{width:100%;aspect-ratio:16/10;object-fit:cover;display:block;border-bottom:1px solid var(--ink)}
+.hcard .b{padding:14px 16px 16px;display:flex;flex-direction:column;gap:6px;flex:1}
+.hcard .k{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.08em;color:var(--accent);text-transform:uppercase}
+.hcard h3{margin:0;font-size:17px;font-weight:600;line-height:1.3}
+.hcard p{margin:0;font-size:13.5px;color:var(--ink-2);display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.hcard .go{margin-top:auto;padding-top:8px;font-size:13px;font-weight:500;color:var(--accent)}
+.hall{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;margin-top:20px;padding:14px 16px;border:1px solid var(--line);background:var(--grid)}
+.hall-n{font-family:"IBM Plex Mono",monospace;font-size:12.5px;color:var(--ink-2)}
+.back{display:inline-block;margin:28px 0 18px;font-size:13.5px;font-weight:500;color:var(--accent);text-decoration:none}
+.back:hover{text-decoration:underline}
+.art-note{margin:-6px 0 16px;color:var(--muted);font-size:13.5px;max-width:80ch}
+#todos{display:none}
+body.all #todos{display:block}
+body.all .hero,body.all .hero+.wrap,body.all section:not(#todos){display:none}
+@media(max-width:900px){.hfeat{grid-template-columns:1fr}}
+.plans img{cursor:zoom-in}
+.lb{position:fixed;inset:0;z-index:100;background:rgba(17,18,20,.92);display:none;align-items:center;justify-content:center;padding:24px;cursor:zoom-out}
+.lb.on{display:flex}
+.lb img{max-width:100%;max-height:100%;object-fit:contain;background:#fff}
+.lb button{position:absolute;top:14px;right:16px;width:40px;height:40px;border:1px solid #fff;background:transparent;color:#fff;font-size:20px;cursor:pointer}
+.feat{margin-bottom:8px}
+.feat-h{margin-bottom:16px}
+.feat-h h3{margin:6px 0 8px;font-size:22px;font-weight:600}
+.feat-h p{margin:0 0 12px;max-width:70ch;color:var(--ink-2)}
+.plans figure.wide{grid-column:1/-1}
+.plans img.ph{object-fit:cover;padding:0;height:auto;aspect-ratio:16/9}
+.plans img.p43{aspect-ratio:4/3}
+</style>
+</head>
+<body>
+
+
+
+<header class="top">
+  <div class="wrap">
+    <div class="brand">LEANDRO ROCHA <small data-i18n="brandRole"></small></div>
+    <nav class="topnav">
+      <a href="#proyectos" data-i18n="navProjects"></a>
+      <a href="#proceso" data-i18n="navProcess"></a>
+      <a href="#competencias" data-i18n="navSkills"></a>
+      <a href="#trayectoria" data-i18n="navCareer"></a>
+      <a href="#software" data-i18n="navSoftware"></a>
+      <a href="#contacto" data-i18n="navContact"></a>
+    </nav>
+    <div class="lang" role="group" aria-label="Idioma">
+      <button data-lang="es" class="on">ES</button><button data-lang="en">EN</button><button data-lang="pt">PT</button>
+    </div>
+  </div>
+</header>
+
+<div class="hero">
+  <div class="wrap">
+    <div>
+      <div class="eyebrow" data-i18n="eyebrow"></div>
+      <h1 data-i18n="h1"></h1>
+      <p class="lead" data-i18n="lead"></p>
+      <div class="cta">
+        <a class="btn primary" href="#proyectos" data-i18n="ctaProjects"></a>
+        <a class="btn" href="https://www.linkedin.com/in/leandrorocha-eng" target="_blank" rel="noopener">LinkedIn ↗</a>
+        <a class="btn" href="https://github.com/LeandroRocha95" target="_blank" rel="noopener">GitHub ↗</a>
+      </div>
+    </div>
+    <aside class="sheet">
+      <div class="hd"><span data-i18n="sheetTitle"></span><span class="mono">REV. 00</span></div>
+      <table>
+        <tr><td data-i18n="sheetBase"></td><td data-i18n="sheetBaseV"></td></tr>
+        <tr><td data-i18n="sheetSpec"></td><td data-i18n="sheetSpecV"></td></tr>
+        <tr><td data-i18n="sheetTools"></td><td>Revit · AutoCAD · SketchUp · Navisworks · InfraWorks · Eberick · TQS · Lumion · Enscape · MS Project · monday.com · Trello</td></tr>
+        <tr><td data-i18n="sheetLang"></td><td data-i18n="sheetLangV"></td></tr>
+        <tr><td>CREA-SC</td><td>216930-5</td></tr>
+        <tr><td data-i18n="sheetAvail"></td><td data-i18n="sheetAvailV"></td></tr>
+      </table>
+    </aside>
+  </div>
+</div>
+
+<div class="wrap">
+  <div class="stats">
+    <div class="stat"><div class="n">~60</div><div class="l" data-i18n="s1"></div></div>
+    <div class="stat"><div class="n">1.440 m²</div><div class="l" data-i18n="s2"></div></div>
+    <div class="stat"><div class="n">~4 M€</div><div class="l" data-i18n="s3"></div></div>
+    <div class="stat"><div class="n">10+</div><div class="l" data-i18n="s4"></div></div>
+  </div>
+</div>
+
+<section class="wrap" id="perfil">
+  <div class="sec-h"><div class="idx">01 — <span data-i18n="fitIdx"></span></div><div><h2 data-i18n="fitTitle"></h2><p data-i18n="fitSub"></p></div></div>
+  <div class="fit">
+    <div class="box"><h4><span>A</span><span data-i18n="fitA"></span></h4><ul><li data-i18n="fitA1"></li><li data-i18n="fitA2"></li><li data-i18n="fitA3"></li></ul></div>
+    <div class="box"><h4><span>B</span><span data-i18n="fitB"></span></h4><ul><li data-i18n="fitB1"></li><li data-i18n="fitB2"></li><li data-i18n="fitB3"></li></ul></div>
+    <div class="box"><h4><span>C</span><span data-i18n="fitC"></span></h4><ul><li data-i18n="fitC1"></li><li data-i18n="fitC2"></li><li data-i18n="fitC3"></li></ul></div>
+  </div>
+</section>
+
+<section id="proyectos" class="wrap">
+  <div class="sec-h"><div class="idx">02 — <span data-i18n="navProjects"></span></div><div><h2 data-i18n="hmTitle"></h2><p data-i18n="hmSub"></p></div></div>
+  <div class="hfeat" id="hfeat"></div>
+  <div class="hall"><div class="hall-n" id="hallN"></div><a class="btn primary" href="#todos"><span data-i18n="allBtn"></span> →</a></div>
+</section>
+
+<section id="todos" class="wrap">
+  <a class="back" href="#proyectos">← <span data-i18n="back"></span></a>
+  <div class="sec-h"><div class="idx" data-i18n="allIdx"></div><div><h2 data-i18n="allTitle"></h2><p data-i18n="allSub"></p></div></div>
+  <div class="ftabs" role="tablist">
+    <button class="ftab on" role="tab" aria-selected="true" data-t="0"><img src="img/ag-render-1.jpg" alt=""><span class="n">01</span><span class="c">Agudos do Sul, PR</span><span class="a">161 m²</span></button>
+    <button class="ftab" role="tab" aria-selected="false" data-t="1"><img src="img/pb-render-1.jpg" alt=""><span class="n">02</span><span class="c">Porto Belo, SC</span><span class="a">139,60 m²</span></button>
+    <button class="ftab" role="tab" aria-selected="false" data-t="2"><img src="img/bs-1.jpg" alt=""><span class="n">03</span><span class="c">Barra do Sul, SC</span><span class="a">137,25 m²</span></button>
+    <button class="ftab" role="tab" aria-selected="false" data-t="3"><img src="img/im-render-1.jpg" alt=""><span class="n">04</span><span class="c">Imbituba, SC</span><span class="a">42 m²</span></button>
+    <button class="ftab" role="tab" aria-selected="false" data-t="4"><img src="img/fl-thumb.jpg" alt=""><span class="n">05</span><span class="c">Florianópolis, SC</span><span class="a">111,82 m²</span></button>
+    <button class="ftab" role="tab" aria-selected="false" data-t="5"><img src="img/el-render-1.jpg" alt=""><span class="n">06</span><span class="c">Porto Belo, SC</span><span class="a">53,55 m²</span></button>
+    <button class="ftab" role="tab" aria-selected="false" data-t="6"><img src="img/tj-5.jpg" alt=""><span class="n">07</span><span class="c">Tijucas, SC</span><span class="a">66,88 m²</span></button>
+    <button class="ftab" role="tab" aria-selected="false" data-t="7"><img src="img/pt-r1.jpg" alt=""><span class="n">08</span><span class="c">Tijucas, SC</span><span class="a">215,15 m²</span></button>
+  </div>
+  <div class="feats" id="feats">
+  <div class="feat on">
+    <div class="feat-h"><div class="eyebrow" data-i18n="ftEyebrow"></div><h3 data-i18n="ftTitle"></h3><p data-i18n="ftText"></p>
+      <div class="chips"><span class="chip">Revit</span><span class="chip">Lumion</span><span class="chip" data-i18n="ftC1"></span><span class="chip" data-i18n="ftC2"></span><span class="chip" data-i18n="ftC3"></span></div></div>
+    <div class="plans">
+      <figure class="wide"><img class="ph" src="img/ag-render-1.jpg" alt="" loading="lazy"><figcaption data-i18n="ft1"></figcaption></figure>
+      <figure><img class="ph" src="img/ag-render-2.jpg" alt="" loading="lazy"><figcaption data-i18n="ft2"></figcaption></figure>
+      <figure><img class="ph p43" src="img/ag-foto-1.jpg" alt="" loading="lazy"><figcaption data-i18n="fo1"></figcaption></figure>
+      <figure><img class="ph p43" src="img/ag-foto-2.jpg" alt="" loading="lazy"><figcaption data-i18n="fo2"></figcaption></figure>
+      <figure><img class="ph p43" src="img/ag-foto-3.jpg" alt="" loading="lazy"><figcaption data-i18n="fo3"></figcaption></figure>
+      <figure><img class="ph p43" src="img/ag-foto-4.jpg" alt="" loading="lazy"><figcaption data-i18n="fo4"></figcaption></figure>
+      <figure><img src="img/ag-3d.jpg" alt="" loading="lazy"><figcaption data-i18n="ft3"></figcaption></figure>
+      <figure><img src="img/ag-fachadas.jpg" alt="" loading="lazy"><figcaption data-i18n="ft4"></figcaption></figure>
+      <figure><img src="img/ag-cortes.jpg" alt="" loading="lazy"><figcaption data-i18n="ft5"></figcaption></figure>
+      <figure><img src="img/ag-estrutura.jpg" alt="" loading="lazy"><figcaption data-i18n="ft6"></figcaption></figure>
+      <figure><img src="img/ag-telhado.jpg" alt="" loading="lazy"><figcaption data-i18n="ft7"></figcaption></figure>
+    </div>
+  </div>
+  <div class="feat">
+    <div class="feat-h"><div class="eyebrow" data-i18n="ftEyebrow"></div><h3 data-i18n="mzTitle"></h3><p data-i18n="mzText"></p>
+      <div class="chips"><span class="chip">Revit</span><span class="chip">Lumion</span><span class="chip" data-i18n="ftC1"></span><span class="chip" data-i18n="ftC3"></span></div></div>
+    <div class="plans">
+      <figure class="wide"><img class="ph" src="img/pb-render-1.jpg" alt="" loading="lazy"><figcaption data-i18n="pb1"></figcaption></figure>
+      <figure><img class="ph" src="img/pb-render-2.jpg" alt="" loading="lazy"><figcaption data-i18n="pb2"></figcaption></figure>
+      <figure><img class="ph p43" src="img/mz-1.jpg" alt="" loading="lazy"><figcaption data-i18n="mz1"></figcaption></figure>
+      <figure><img class="ph p43" src="img/mz-2.jpg" alt="" loading="lazy"><figcaption data-i18n="mz2"></figcaption></figure>
+      <figure><img class="ph p43" src="img/mz-3.jpg" alt="" loading="lazy"><figcaption data-i18n="mz3"></figcaption></figure>
+      <figure><img class="ph p43" src="img/mz-5.jpg" alt="" loading="lazy"><figcaption data-i18n="mz5"></figcaption></figure>
+      <figure><img class="ph p43" src="img/mz-4.jpg" alt="" loading="lazy"><figcaption data-i18n="mz4"></figcaption></figure>
+      <figure><img class="ph p43" src="img/mz-6.jpg" alt="" loading="lazy"><figcaption data-i18n="mz6"></figcaption></figure>
+      <figure><img src="img/pb-planta.jpg" alt="" loading="lazy"><figcaption data-i18n="pb3"></figcaption></figure>
+      <figure><img src="img/pb-corte.jpg" alt="" loading="lazy"><figcaption data-i18n="pb4"></figcaption></figure>
+      <figure><img src="img/pb-estrutura.jpg" alt="" loading="lazy"><figcaption data-i18n="pb5"></figcaption></figure>
+      <figure><img src="img/pb-escada.jpg" alt="" loading="lazy"><figcaption data-i18n="pb6"></figcaption></figure>
+    </div>
+  </div>
+  <div class="feat">
+    <div class="feat-h"><div class="eyebrow" data-i18n="ftEyebrow"></div><h3 data-i18n="bsTitle"></h3><p data-i18n="bsText"></p>
+      <div class="chips"><span class="chip">Revit</span><span class="chip" data-i18n="ftC1"></span><span class="chip" data-i18n="bsC1"></span><span class="chip" data-i18n="ftC2"></span></div></div>
+    <div class="plans">
+      <figure class="wide"><img class="ph" src="img/bs-1.jpg" alt="" loading="lazy"><figcaption data-i18n="bs1"></figcaption></figure>
+      <figure><img class="ph p43" src="img/bs-2.jpg" alt="" loading="lazy"><figcaption data-i18n="bs2"></figcaption></figure>
+      <figure><img class="ph p43" src="img/bs-3.jpg" alt="" loading="lazy"><figcaption data-i18n="bs3"></figcaption></figure>
+      <figure><img class="ph p43" src="img/bs-4.jpg" alt="" loading="lazy"><figcaption data-i18n="bs4"></figcaption></figure>
+      <figure><img class="ph p43" src="img/bs-5.jpg" alt="" loading="lazy"><figcaption data-i18n="bs5"></figcaption></figure>
+      <figure><img class="ph p43" src="img/bs-6.jpg" alt="" loading="lazy"><figcaption data-i18n="bs6"></figcaption></figure>
+      <figure><img class="ph p43" src="img/bs-7.jpg" alt="" loading="lazy"><figcaption data-i18n="bs7"></figcaption></figure>
+      <figure class="wide"><img src="img/bs-estrutura.jpg" alt="" loading="lazy"><figcaption data-i18n="bs8"></figcaption></figure>
+      <figure><img src="img/bs-planta.jpg" alt="" loading="lazy"><figcaption data-i18n="bs9"></figcaption></figure>
+      <figure><img src="img/bs-vigas.jpg" alt="" loading="lazy"><figcaption data-i18n="bs10"></figcaption></figure>
+      <figure><img src="img/bs-telhado.jpg" alt="" loading="lazy"><figcaption data-i18n="bs11"></figcaption></figure>
+      <figure><img src="img/bs-escada.jpg" alt="" loading="lazy"><figcaption data-i18n="bs12"></figcaption></figure>
+    </div>
+  </div>
+  <div class="feat">
+    <div class="feat-h"><div class="eyebrow" data-i18n="ftEyebrow"></div><h3 data-i18n="imTitle"></h3><p data-i18n="imText"></p>
+      <div class="chips"><span class="chip">Revit</span><span class="chip">Lumion</span><span class="chip" data-i18n="ftC1"></span><span class="chip" data-i18n="ftC3"></span></div></div>
+    <div class="plans">
+      <figure><img class="ph" src="img/im-render-1.jpg" alt="" loading="lazy"><figcaption data-i18n="im1"></figcaption></figure>
+      <figure><img class="ph" src="img/im-foto.jpg" alt="" loading="lazy"><figcaption data-i18n="im2"></figcaption></figure>
+      <figure><img class="ph" src="img/im-render-2.jpg" alt="" loading="lazy"><figcaption data-i18n="im3"></figcaption></figure>
+      <figure><img src="img/im-planta.jpg" alt="" loading="lazy"><figcaption data-i18n="im4"></figcaption></figure>
+      <figure><img src="img/im-corte.jpg" alt="" loading="lazy"><figcaption data-i18n="im5"></figcaption></figure>
+      <figure><img src="img/im-telhado.jpg" alt="" loading="lazy"><figcaption data-i18n="im6"></figcaption></figure>
+    </div>
+  </div>
+  <div class="feat">
+    <div class="feat-h"><div class="eyebrow" data-i18n="ftEyebrow"></div><h3 data-i18n="flTitle"></h3><p data-i18n="flText"></p>
+      <div class="chips"><span class="chip">Revit</span><span class="chip" data-i18n="ftC1"></span><span class="chip" data-i18n="flC1"></span><span class="chip" data-i18n="flC2"></span><span class="chip" data-i18n="ftC3"></span></div></div>
+    <div class="plans">
+      <figure><img src="img/fl-planta.jpg" alt="" loading="lazy"><figcaption data-i18n="fl1"></figcaption></figure>
+      <figure><img src="img/fl-telhado.jpg" alt="" loading="lazy"><figcaption data-i18n="fl2"></figcaption></figure>
+      <figure><img src="img/fl-eletrico.jpg" alt="" loading="lazy"><figcaption data-i18n="fl3"></figcaption></figure>
+      <figure><img src="img/fl-hidro.jpg" alt="" loading="lazy"><figcaption data-i18n="fl4"></figcaption></figure>
+    </div>
+  </div>
+  <div class="feat">
+    <div class="feat-h"><div class="eyebrow" data-i18n="ftEyebrow"></div><h3 data-i18n="elTitle"></h3><p data-i18n="elText"></p>
+      <div class="chips"><span class="chip">Revit</span><span class="chip" data-i18n="ftC1"></span><span class="chip" data-i18n="bsC1"></span><span class="chip" data-i18n="flC2"></span></div></div>
+    <div class="plans">
+      <figure class="wide"><img class="ph" src="img/el-render-1.jpg" alt="" loading="lazy"><figcaption data-i18n="el1"></figcaption></figure>
+      <figure><img class="ph" src="img/el-render-2.jpg" alt="" loading="lazy"><figcaption data-i18n="el2"></figcaption></figure>
+      <figure><img class="ph" src="img/el-render-3.jpg" alt="" loading="lazy"><figcaption data-i18n="el3"></figcaption></figure>
+      <figure><img class="ph" src="img/el-render-4.jpg" alt="" loading="lazy"><figcaption data-i18n="el4"></figcaption></figure>
+      <figure><img src="img/el-planta3d.jpg" alt="" loading="lazy"><figcaption data-i18n="el5"></figcaption></figure>
+      <figure><img src="img/el-arq.jpg" alt="" loading="lazy"><figcaption data-i18n="el6"></figcaption></figure>
+      <figure><img src="img/el-hidro.jpg" alt="" loading="lazy"><figcaption data-i18n="el7"></figcaption></figure>
+      <figure class="wide"><img src="img/el-est.jpg" alt="" loading="lazy"><figcaption data-i18n="el8"></figcaption></figure>
+    </div>
+  </div>
+  <div class="feat">
+    <div class="feat-h"><div class="eyebrow" data-i18n="ftEyebrow"></div><h3 data-i18n="tjTitle"></h3><p data-i18n="tjText"></p>
+      <div class="chips"><span class="chip">Revit</span><span class="chip" data-i18n="ftC1"></span><span class="chip" data-i18n="ftC2"></span><span class="chip" data-i18n="ftC3"></span></div></div>
+    <div class="plans">
+      <figure class="wide"><img class="ph" src="img/tj-5.jpg" alt="" loading="lazy"><figcaption data-i18n="tj1"></figcaption></figure>
+      <figure><img class="ph p43" src="img/tj-1.jpg" alt="" loading="lazy"><figcaption data-i18n="tj2"></figcaption></figure>
+      <figure><img class="ph p43" src="img/tj-2.jpg" alt="" loading="lazy"><figcaption data-i18n="tj3"></figcaption></figure>
+      <figure><img class="ph p43" src="img/tj-3.jpg" alt="" loading="lazy"><figcaption data-i18n="tj4"></figcaption></figure>
+      <figure><img class="ph p43" src="img/tj-4.jpg" alt="" loading="lazy"><figcaption data-i18n="tj5"></figcaption></figure>
+      <figure><img src="img/tj-planta.jpg" alt="" loading="lazy"><figcaption data-i18n="tj6"></figcaption></figure>
+      <figure><img src="img/tj-corte.jpg" alt="" loading="lazy"><figcaption data-i18n="tj7"></figcaption></figure>
+      <figure class="wide"><img src="img/tj-telhado.jpg" alt="" loading="lazy"><figcaption data-i18n="tj8"></figcaption></figure>
+    </div>
+  </div>
+  <div class="feat">
+    <div class="feat-h"><div class="eyebrow" data-i18n="ftEyebrow"></div><h3 data-i18n="ptTitle"></h3><p data-i18n="ptText"></p>
+      <div class="chips"><span class="chip">Revit</span><span class="chip" data-i18n="bsC1"></span><span class="chip" data-i18n="ftC1"></span><span class="chip" data-i18n="ftC2"></span></div></div>
+    <div class="plans">
+      <figure class="wide"><img class="ph" src="img/pt-r1.jpg" alt="" loading="lazy"><figcaption data-i18n="pt1"></figcaption></figure>
+      <figure><img class="ph p43" src="img/pt-r2.jpg" alt="" loading="lazy"><figcaption data-i18n="pt2"></figcaption></figure>
+      <figure><img class="ph p43" src="img/pt-r3.jpg" alt="" loading="lazy"><figcaption data-i18n="pt3"></figcaption></figure>
+      <figure><img class="ph p43" src="img/pt-r5.jpg" alt="" loading="lazy"><figcaption data-i18n="pt4"></figcaption></figure>
+      <figure><img class="ph p43" src="img/pt-r6.jpg" alt="" loading="lazy"><figcaption data-i18n="pt5"></figcaption></figure>
+      <figure><img class="ph p43" src="img/pt-f1.jpg" alt="" loading="lazy"><figcaption data-i18n="pt6"></figcaption></figure>
+      <figure><img class="ph p43" src="img/pt-f2.jpg" alt="" loading="lazy"><figcaption data-i18n="pt7"></figcaption></figure>
+      <figure class="wide"><img src="img/pt-plantas.jpg" alt="" loading="lazy"><figcaption data-i18n="pt8"></figcaption></figure>
+      <figure><img src="img/pt-cortes.jpg" alt="" loading="lazy"><figcaption data-i18n="pt9"></figcaption></figure>
+      <figure><img src="img/pt-3d.jpg" alt="" loading="lazy"><figcaption data-i18n="pt10"></figcaption></figure>
+      <figure class="wide"><img src="img/pt-formas.jpg" alt="" loading="lazy"><figcaption data-i18n="pt11"></figcaption></figure>
+      <figure class="wide"><img src="img/pt-est3d.jpg" alt="" loading="lazy"><figcaption data-i18n="pt12"></figcaption></figure>
+    </div>
+  </div>
+  </div>
+  <h3 class="plans-h" data-i18n="artTitle"></h3>
+  <p class="art-note" data-i18n="projSub"></p>
+  <div class="grid" id="works"></div>
+  <div class="wlist" id="worksList"></div>
+  <h3 class="plans-h" data-i18n="plTitle"></h3>
+  <div class="plans">
+    <figure class="wide"><img src="img/forma-terreo.jpg" alt="" loading="lazy"><figcaption data-i18n="pl1"></figcaption></figure>
+    <figure><img src="img/modelo-3d.jpg" alt="" loading="lazy"><figcaption data-i18n="pl2"></figcaption></figure>
+    <figure><img src="img/est-detalhes.jpg" alt="" loading="lazy"><figcaption data-i18n="pl5"></figcaption></figure>
+    <figure class="wide"><img src="img/forma-lajes.jpg" alt="" loading="lazy"><figcaption data-i18n="pl3"></figcaption></figure>
+    <figure class="wide"><img src="img/fundacao-3d.jpg" alt="" loading="lazy"><figcaption data-i18n="pl4"></figcaption></figure>
+  </div>
+</section>
+
+<section id="proceso" class="wrap">
+  <div class="sec-h"><div class="idx">03 — <span data-i18n="navProcess"></span></div><div><h2 data-i18n="procTitle"></h2><p data-i18n="procSub"></p></div></div>
+  <div class="steps">
+    <div class="step"><div class="num">01</div><h4 data-i18n="st1"></h4><p data-i18n="st1d"></p></div>
+    <div class="step"><div class="num">02</div><h4 data-i18n="st2"></h4><p data-i18n="st2d"></p></div>
+    <div class="step"><div class="num">03</div><h4 data-i18n="st3"></h4><p data-i18n="st3d"></p></div>
+    <div class="step"><div class="num">04</div><h4 data-i18n="st4"></h4><p data-i18n="st4d"></p></div>
+    <div class="step"><div class="num">05</div><h4 data-i18n="st5"></h4><p data-i18n="st5d"></p></div>
+    <div class="step"><div class="num">06</div><h4 data-i18n="st6"></h4><p data-i18n="st6d"></p></div>
+  </div>
+</section>
+
+<section id="competencias" class="wrap">
+  <div class="sec-h"><div class="idx">04 — <span data-i18n="navSkills"></span></div><div><h2 data-i18n="skTitle"></h2><p data-i18n="skSub"></p></div></div>
+  <div class="skills">
+    <div class="skillbox"><h4 data-i18n="skA"></h4>
+      <div class="row"><span>Revit</span><small>BIM</small></div>
+      <div class="row"><span>AutoCAD</span><small>2D</small></div>
+      <div class="row"><span>Eberick · TQS</span><small data-i18n="nCalc"></small></div>
+      <div class="row"><span>Navisworks · InfraWorks</span><small data-i18n="nCoord"></small></div>
+      <div class="row"><span>SketchUp · Lumion · Enscape</span><small>renders</small></div>
+    </div>
+    <div class="skillbox"><h4 data-i18n="skB"></h4>
+      <div class="row"><span data-i18n="cQty"></span><small data-i18n="cBudget"></small></div>
+      <div class="row"><span>MS Project</span><small data-i18n="skPlan"></small></div>
+      <div class="row"><span>monday.com · Trello</span><small data-i18n="skPm"></small></div>
+      <div class="row"><span data-i18n="skSite"></span><small data-i18n="nSites"></small></div>
+      <div class="row"><span data-i18n="skProc"></span><small data-i18n="skSuppliers"></small></div>
+      <div class="row"><span data-i18n="skTeams"></span><small data-i18n="skAssembly"></small></div>
+    </div>
+    <div class="skillbox"><h4 data-i18n="skC"></h4>
+      <div class="row"><span data-i18n="ai1"></span><small data-i18n="ai1n"></small></div>
+      <div class="row"><span data-i18n="ai2"></span><small>Claude Code</small></div>
+      <div class="row"><span data-i18n="ai3"></span><small>Anthropic API</small></div>
+      <div class="row"><span data-i18n="ai4"></span><small data-i18n="ai4n"></small></div>
+      <div class="row"><span>Next.js · TypeScript · Supabase</span><small>web</small></div>
+    </div>
+  </div>
+</section>
+
+<section id="trayectoria" class="wrap">
+  <div class="sec-h"><div class="idx">05 — <span data-i18n="navCareer"></span></div><div><h2 data-i18n="trTitle"></h2></div></div>
+  <div class="tl">
+    <div class="item"><div class="when" data-i18n="t1w"></div><h4 data-i18n="t1t"></h4><p data-i18n="t1d"></p></div>
+    <div class="item"><div class="when" data-i18n="t2w"></div><h4 data-i18n="t2t"></h4><p data-i18n="t2d"></p></div>
+    <div class="item"><div class="when">2014 — 2020</div><h4 data-i18n="t3t"></h4><p data-i18n="t3d"></p></div>
+    <div class="item"><div class="when">2017</div><h4 data-i18n="t4t"></h4><p data-i18n="t4d"></p></div>
+    <div class="item"><div class="when">2024</div><h4 data-i18n="t5t"></h4><p data-i18n="t5d"></p></div>
+  </div>
+</section>
+
+<section id="software" class="wrap">
+  <div class="soft">
+    <div class="l"><div class="eyebrow" data-i18n="swEyebrow"></div><h2 data-i18n="swTitle"></h2><p data-i18n="swText"></p><a class="btn" href="https://github.com/LeandroRocha95" target="_blank" rel="noopener" data-i18n="swCta"></a></div>
+    <div class="r"><b>obra-centtra</b><br><span data-i18n="swL1"></span><br><span data-i18n="swL2"></span><br><span data-i18n="swL3"></span><br><b>stack</b> Next.js · TypeScript · Supabase · Capacitor · Anthropic API</div>
+  </div>
+</section>
+
+<section id="contacto" class="wrap">
+  <div class="contact">
+    <div class="l"><h2 data-i18n="ctTitle"></h2><p data-i18n="ctText"></p></div>
+    <table>
+      <tr><td>E-mail</td><td><a href="mailto:leandros.rocha@outlook.com">leandros.rocha@outlook.com</a></td></tr>
+      <tr><td>WhatsApp</td><td><a href="https://wa.me/5547991789262" target="_blank" rel="noopener">+55 47 99178-9262</a></td></tr>
+      <tr><td>LinkedIn</td><td><a href="https://www.linkedin.com/in/leandrorocha-eng" target="_blank" rel="noopener">linkedin.com/in/leandrorocha-eng</a></td></tr>
+      <tr><td>GitHub</td><td><a href="https://github.com/LeandroRocha95" target="_blank" rel="noopener">github.com/LeandroRocha95</a></td></tr>
+      <tr><td data-i18n="ctLoc"></td><td data-i18n="ctLocV"></td></tr>
+    </table>
+  </div>
+</section>
+
+<footer class="wrap"><span>Leandro Rocha · <span data-i18n="brandRole"></span></span><span class="mono">ES · EN · PT</span></footer>
+
+<div class="lb" id="lb" role="dialog" aria-modal="true"><button aria-label="Close">×</button><img alt=""></div>
+<script>
+const I18N={
+es:{pl5:"Secciones, vigas, zapatas, pilares y detalles del forjado",kCity:"Ciudad",kType:"Tipo",kScope:"Alcance",ptTitle:"Vivienda de dos plantas · 215,15 m² · Tijucas, SC",ptText:"Vivienda de dos plantas en sistema mixto, en ejecución: estructura de hormigón armado (zapatas, pilares, vigas y forjados) con cubierta, altillo y revestimientos de madera. Proyecto arquitectónico y estructural completos, renders de presentación y seguimiento de obra.",pt1:"Render de presentación · fachada principal",pt2:"Render de presentación · vista desde la calle",pt3:"Render de presentación · fachada lateral",pt4:"Render interior · doble altura y ventanal",pt5:"Render interior · escalera y altillo",pt6:"Obra en ejecución: estructura de hormigón y cubierta de madera",pt7:"Obra en ejecución: estructura de cubierta",pt8:"Proyecto arquitectónico: planta baja y planta alta",pt9:"Secciones A y B",pt10:"Planta de cubierta y 3D",pt11:"Proyecto estructural: plantas de encofrado",pt12:"Proyecto estructural: secciones y 3D",skPm:"gestión de tareas",skC:"IA y software",ai1:"IA generativa en el trabajo diario",ai1n:"documentos · análisis",ai2:"Desarrollo de software asistido por IA",ai3:"Asistente de IA integrado en el ERP",ai4:"Automatización de procesos e informes",ai4n:"flujos",tjTitle:"Vivienda de madera · 66,88 m² · Tijucas, SC",tjText:"Vivienda de madera con cubierta a dos aguas desfasadas y estructura vista en el salón, del proyecto a la obra: planta ejecutiva con listado de piezas, secciones con plano de falsos techos y estructura de cubierta con mediciones.",tj1:"Obra · fachada con ventanales altos",tj2:"Salón: cubierta vista con tirante de madera",tj3:"Cocina integrada bajo la cubierta vista",tj4:"Cocina y comedor: estructura de cubierta",tj5:"Detalle del revestimiento interior de madera",tj6:"Planta baja ejecutiva y perspectiva",tj7:"Secciones y plano de falsos techos",tj8:"Estructura de cubierta: planta, 3D y mediciones",elTitle:"Vivienda compacta de madera · 53,55 m² · Porto Belo, SC",elText:"Paquete completo de proyecto de 2026 para una vivienda compacta de madera, registrado en el CREA-SC: arquitectura con renders, cimentación de hormigón armado (zapatas, vigas de atado y pilares con despiece de armaduras) y fontanería y saneamiento con fosa séptica, filtro anaerobio y pozo de infiltración.",el1:"Render exterior · vista aérea",el2:"Render exterior · fachada lateral",el3:"Render exterior · acceso y pérgola",el4:"Render exterior · fachada posterior",el5:"Planta amueblada renderizada",el6:"Proyecto arquitectónico: planta, alzado y 3D",el7:"Fontanería y saneamiento: implantación, detalle y sección",el8:"Proyecto estructural: zapatas, vigas, pilares y armaduras",hmTitle:"Algunos proyectos",hmSub:"Una muestra de obras, del proyecto a la entrega. No es la lista completa: hay más proyectos, planos y obras registradas en el panel, y se irán añadiendo otros.",allBtn:"Ver más proyectos",allNote:"Muestra: {p} proyectos documentados · {w} obras registradas en el CREA-SC (2025–2026) · 1.440 m²",allIdx:"Panel de proyectos",allTitle:"Selección de proyectos",allSub:"Una parte del trabajo realizado, no el total. Elige un proyecto para ver renders, fotos de obra y planos; más abajo, las obras registradas en el CREA-SC y los planos estructurales.",back:"Volver al portfolio",seeProj:"Ver proyecto",flTitle:"Vivienda de madera · 111,82 m² · Florianópolis, SC",flText:"Paquete de proyecto de 2026 para una vivienda de madera, registrado en el CREA-SC: planta ejecutiva, estructura de cubierta con mediciones, proyecto eléctrico con esquema unifilar y cuadro de cargas, y proyecto de fontanería y saneamiento con depuración in situ.",flC1:"Electricidad",flC2:"Fontanería y saneamiento",fl1:"Planta baja ejecutiva y perspectiva",fl2:"Estructura de cubierta: cabios y listones",fl3:"Proyecto eléctrico: planta, esquema unifilar y acometida",fl4:"Saneamiento: red, depuradora y pozos de infiltración",imTitle:"Vivienda compacta de madera · 42 m² · Imbituba, SC",imText:"Vivienda compacta de madera con cubierta a dos aguas desfasadas y pérgola de acceso, del render a la obra: planta ejecutiva con listado de piezas, secciones y estructura de cubierta con mediciones de madera y teja.",im1:"Render exterior · acceso y pérgola",im2:"Obra en fase final · misma vista",im3:"Render exterior · fachada lateral y posterior",im4:"Planta baja ejecutiva con listado de piezas",im5:"Secciones",im6:"Estructura de cubierta con mediciones",bsTitle:"Vivienda de madera de dos plantas · 137,25 m² · Balneário Barra do Sul, SC",bsText:"Vivienda de dos plantas en sistema mixto: zapatas, vigas de atado y pilares de hormigón armado, con forjado, cerramientos y cubierta de madera. Del proyecto a la obra terminada: plantas ejecutivas, estructura en 3D, vigas, cubierta y detalle de la escalera.",bsC1:"Hormigón armado",bs1:"Obra terminada · fachada y porche",bs2:"Salón, cocina y altillo",bs3:"Planta baja: escalera y forjado de madera",bs4:"Altillo: cubierta vista y doble altura",bs5:"Escalera vista desde la planta alta",bs6:"Escalera de madera: peldaños y pasamanos",bs7:"Suite de la planta alta",bs8:"Estructura en 3D: cimentación, pilares y vigas",bs9:"Planta alta ejecutiva",bs10:"Vigas y entramado de la planta alta",bs11:"Estructura de cubierta: planta y 3D",bs12:"Detalle de la escalera",pb1:"Render exterior · fachada acristalada",pb2:"Render exterior · porche",pb3:"Planta baja ejecutiva",pb4:"Sección A",pb5:"Estructura de madera: planta y 3D",pb6:"Detalle de la escalera de madera",mzTitle:"Vivienda de madera con altillo · 139,60 m² · Porto Belo, SC",mzText:"Vivienda de madera de dos niveles con doble altura, altillo y porche, del proyecto a la obra terminada en 2026: planta ejecutiva, secciones, estructura de madera con listado de piezas, detalle de escalera y renders.",mz1:"Exterior · porche y fachada acristalada",mz2:"Salón a doble altura y escalera de madera",mz3:"Planta baja vista desde la escalera",mz5:"Doble altura vista desde el altillo",mz4:"Altillo con ventanales",mz6:"Cubierta vista: vigas y entablado de madera",fo1:"Obra terminada · fachada",fo2:"Obra terminada · porche lateral",fo3:"Porche: estructura y revestimiento de madera",fo4:"Interior: cubierta vista, salón y cocina",ftEyebrow:"Proyecto",ftTitle:"Vivienda de madera · 161 m² · Agudos do Sul, PR",ftText:"Vivienda unifamiliar de madera con porche perimetral, del proyecto a la obra terminada en 2026: arquitectura, estructura de madera, cubierta con listado de materiales, detalles y renders para el cliente.",ftC1:"Estructura de madera",ftC2:"Cubierta",ftC3:"Mediciones",ft1:"Render exterior · vista aérea",ft2:"Render exterior · fachada frontal",ft3:"Modelo 3D de la cubierta",ft4:"Alzados frontal y posterior",ft5:"Secciones AA y BB",ft6:"Planta de estructura de madera",ft7:"Planta de cubierta: cabios y listones",artTitle:"Obras registradas en el CREA-SC",plTitle:"Planos de proyecto estructural",pl1:"Replanteo de zapatas y plantas de encofrado · vivienda con forjado · Porto Belo, SC · 2026",pl2:"Modelo de cálculo y vista 3D de la estructura",pl3:"Replanteo y planta de encofrado · edificio de dos plantas",pl4:"Cimentación en 3D, zapatas, pilares, secciones y viga de atado · edificio de dos plantas",kYear:"Año",nCalc:"cálculo estructural",nCoord:"coordinación",nSites:"~60 obras",ty:{W:"Vivienda de madera",M:"Vivienda de sistema mixto",A:"Vivienda de albañilería",H:"Red de fontanería y saneamiento",C:"Estructura de hormigón armado"},sc:{pe:"Proyecto y ejecución",e:"Ejecución",arq:"Proyecto arquitectónico",ele:"Electricidad",hid:"Fontanería y saneamiento",rad:"Losa de cimentación",con:"Hormigón armado",mad:"Estructura de madera",mem:"Memoria descriptiva"},brandRole:"Ingeniero Civil",navProjects:"Proyectos",navProcess:"Proceso",navSkills:"Competencias",navCareer:"Trayectoria",navSoftware:"Software",navContact:"Contacto",
+eyebrow:"Portfolio de ingeniería · Vivienda industrializada en madera",h1:"Del modelo BIM a la entrega de la vivienda.",lead:"Ingeniero Civil con más de 10 años en construcción. Proyecto arquitectónico y estructural en Revit, mediciones y presupuestos, planificación y gestión de ~60 obras simultáneas. Busco incorporarme a una empresa en España.",ctaProjects:"Ver proyectos",
+sheetTitle:"Ficha técnica",sheetBase:"Base",sheetBaseV:"Joinville (Brasil) → España",sheetSpec:"Especialidad",sheetSpecV:"BIM · Oficina técnica · Gestión de obra",sheetTools:"Herramientas",sheetLang:"Idiomas",sheetLangV:"Portugués nativo · Español básico (en formación) · Inglés básico",sheetAvail:"Disponibilidad",sheetAvailV:"Inmediata · presencial o remoto",
+s1:"obras gestionadas en simultáneo",s2:"con responsabilidad técnica registrada (CREA-SC)",s3:"facturación anual de la constructora",s4:"años en construcción",
+fitIdx:"Perfil",fitTitle:"Qué aporto según el puesto",fitSub:"Tres lecturas rápidas del mismo perfil, según lo que busque la empresa.",fitA:"BIM / Revit",fitA1:"Proyecto arquitectónico y estructural en Revit y AutoCAD",fitA2:"Familias, plantillas y modelo federado ARQ/EST/MEP",fitA3:"Planos, mediciones desde el modelo y renders",fitB:"Oficina técnica / Presupuestos",fitB1:"Mediciones, cuantificación de materiales y presupuesto de obra",fitB2:"Control de costes por fase y base de precios propia",fitB3:"Ofertas, compras y negociación con proveedores",fitC:"Gestión de obra",fitC1:"~60 obras simultáneas, ~5 entregas al mes",fitC2:"Planificación en MS Project y coordinación de equipos",fitC3:"Relación con el cliente del contrato a la entrega",
+projTitle:"Obras con responsabilidad técnica",projSub:"Obras y servicios bajo mi responsabilidad técnica registrada en el CREA-SC, el colegio profesional de ingeniería de Brasil (2025–2026). Nombres de clientes y direcciones omitidos; justificante disponible bajo solicitud.",filterLabel:"Filtrar por sistema",fAll:"Todos",fBim:"Madera",fCost:"Mixto",fSite:"Albañilería y otros",
+
+
+kArea:"Superficie",
+cTimber:"Estructura de madera",cBudget:"Presupuesto",cAssemblyMgmt:"Dirección de montaje",cQty:"Mediciones",cCostCtrl:"Control de costes",cLogistics:"Logística",cCrews:"Equipos de montaje",cHandover:"Entrega al cliente",cPriceDb:"Base de precios",cPhase:"Control por fase",cFamilies:"Familias",cTemplates:"Plantillas",
+procTitle:"Cómo trabajo: el ciclo completo",procSub:"Las seis fases que cubro en cada vivienda.",st1:"Proyecto",st1d:"Arquitectónico y estructural en Revit (BIM) y AutoCAD.",st2:"Mediciones",st2d:"Cuantificación de materiales y presupuesto por fase.",st3:"Planificación",st3d:"Cronograma y seguimiento en MS Project.",st4:"Compras y logística",st4d:"Proveedores, stock y entregas a obra.",st5:"Montaje",st5d:"Coordinación de equipos y control de calidad.",st6:"Entrega",st6d:"Relación directa con el cliente hasta la llave.",
+skTitle:"Competencias",skSub:"Herramientas y áreas de trabajo.",skA:"Proyecto y BIM",skB:"Oficina técnica y obra",skPlan:"planificación",skSite:"Gestión de obra",skProc:"Compras y logística",skSuppliers:"proveedores",skTeams:"Gestión de equipos",skAssembly:"montaje",
+trTitle:"Trayectoria",t1w:"ene 2021 — actualidad",t1t:"Ingeniero Civil · Alliance Casas Pré-Fabricadas",t1d:"Gestión técnica de ~60 obras simultáneas de vivienda industrializada en madera (~80 m²/unidad, ~5 entregas/mes). Proyecto en Revit y AutoCAD, mediciones y presupuestos, MS Project, compras, logística y entrega al cliente. Diseñé e implanté el ERP propio de la empresa.",t2w:"may 2026 — actualidad",t2t:"Desarrollador Full-Stack (proyecto propio) · Centtra",t2d:"Obra Centtra: SaaS para constructoras de vivienda industrializada. ~60 módulos, 20 usuarios activos a diario.",t3t:"Administrativo · Rocha e Filhos Material de Construcción",t3d:"Atención al público, albaranes y control de cargas y descargas, emisión de facturas (NF-e), compras y gestión del equipo.",t4t:"Auxiliar de Ingeniería (prácticas) · Hoffmann Engenharia",t4d:"Proyectos arquitectónicos y estructurales, atención al cliente y seguimiento de obras.",t5t:"Grado en Ingeniería Civil · UniSociesc — Grado en Análisis y Desarrollo de Sistemas · Univille (en curso)",t5d:"Graduado en diciembre de 2024. Registro profesional CREA-SC 216930-5. Cursos: Revit arquitectónico, estructural e hidrosanitario, AutoCAD básico y avanzado, InfraWorks y Civil 3D (KeepCad) · Revit para proyectos eléctricos residenciales y MS Project para obras, 40 h (engenhaBIM).",
+swEyebrow:"Diferencial",swTitle:"Llevé la obra al software",swText:"En 2026 diseñé y desarrollé desde cero el ERP que hoy opera la constructora: CRM, presupuestos, contratos con firma digital, cronograma y diario de obra, compras, stock, finanzas, app móvil y asistente de IA.",swCta:"Ver portfolio de software ↗",swL1:"módulos: 60 · usuarios/día: 20",swL2:"presupuestos · contratos · cronograma · compras",swL3:"finanzas · comisiones · portal del cliente",
+ctTitle:"Contacto",ctText:"Disponible para incorporarme a tiempo completo en España (presencial o remoto) en BIM, oficina técnica, presupuestos o tecnología aplicada a la construcción.",ctLoc:"Ubicación",ctLocV:"Joinville, Brasil · destino: España",
+g1:"Cimentación",g2:"Estructura",g3:"Cerramientos",g4:"Instalaciones",g5:"Acabados",b1:"Cimentación",b2:"Estructura madera",b3:"Cubierta",b4:"Instalaciones",b5:"Acabados"},
+en:{pl5:"Sections, beams, footings, columns and slab details",kCity:"City",kType:"Type",kScope:"Scope",ptTitle:"Two-storey house · 215.15 m² · Tijucas, SC",ptText:"Two-storey house in a mixed system, under construction: reinforced concrete structure (footings, columns, beams and slabs) with timber roof, mezzanine and cladding. Full architectural and structural design, presentation renders and site follow-up.",pt1:"Presentation render · main elevation",pt2:"Presentation render · street view",pt3:"Presentation render · side elevation",pt4:"Interior render · double height and glazing",pt5:"Interior render · stair and mezzanine",pt6:"Under construction: concrete structure and timber roof",pt7:"Under construction: roof structure",pt8:"Architectural design: ground and upper floor plans",pt9:"Sections A and B",pt10:"Roof plan and 3D",pt11:"Structural design: formwork plans",pt12:"Structural design: sections and 3D",skPm:"task management",skC:"AI and software",ai1:"Generative AI in day-to-day work",ai1n:"documents · analysis",ai2:"AI-assisted software development",ai3:"AI assistant built into the ERP",ai4:"Process and reporting automation",ai4n:"workflows",tjTitle:"Timber house · 66.88 m² · Tijucas, SC",tjText:"Timber house with an offset gable roof and exposed structure over the living room, from design to build: construction plan with cutting list, sections with ceiling plan and roof structure with take-off.",tj1:"Build · front with clerestory windows",tj2:"Living room: exposed roof with timber tie beam",tj3:"Open kitchen under the exposed roof",tj4:"Kitchen and dining: roof structure",tj5:"Interior timber cladding detail",tj6:"Ground-floor construction plan and perspective",tj7:"Sections and ceiling plan",tj8:"Roof structure: plan, 3D and take-off",elTitle:"Compact timber house · 53.55 m² · Porto Belo, SC",elText:"Complete 2026 design package for a compact timber house, registered with CREA-SC: architecture with renders, reinforced concrete foundation (footings, ground beams and columns with rebar detailing) and plumbing and drainage with septic tank, anaerobic filter and soakaway.",el1:"Exterior render · aerial view",el2:"Exterior render · side elevation",el3:"Exterior render · entrance and pergola",el4:"Exterior render · rear elevation",el5:"Rendered furnished floor plan",el6:"Architectural design: plan, elevation and 3D",el7:"Plumbing and drainage: site plan, detail and section",el8:"Structural design: footings, beams, columns and rebar",hmTitle:"Selected projects",hmSub:"A sample of builds, from design to handover. Not the full list: more projects, drawings and registered works are in the panel, and others will be added.",allBtn:"View more projects",allNote:"Sample: {p} documented projects · {w} works registered with CREA-SC (2025–2026) · 1,440 m²",allIdx:"Project panel",allTitle:"Selected projects",allSub:"Part of the work done, not all of it. Pick a project to see renders, site photos and drawings; further down, the works registered with CREA-SC and the structural drawings.",back:"Back to portfolio",seeProj:"View project",flTitle:"Timber house · 111.82 m² · Florianópolis, SC",flText:"2026 design package for a timber house, registered with CREA-SC: construction plan, roof structure with take-off, electrical design with single-line diagram and load schedule, and plumbing and drainage design with on-site treatment.",flC1:"Electrical",flC2:"Plumbing and drainage",fl1:"Ground-floor construction plan and perspective",fl2:"Roof structure: rafters and battens",fl3:"Electrical design: plan, single-line diagram and service entrance",fl4:"Drainage: network, treatment unit and soakaways",imTitle:"Compact timber house · 42 m² · Imbituba, SC",imText:"Compact timber house with an offset gable roof and entrance pergola, from render to build: construction plan with cutting list, sections and roof structure with timber and tile take-off.",im1:"Exterior render · entrance and pergola",im2:"Build in its final stage · same view",im3:"Exterior render · side and rear",im4:"Ground-floor construction plan with cutting list",im5:"Sections",im6:"Roof structure with take-off",bsTitle:"Two-storey timber house · 137.25 m² · Balneário Barra do Sul, SC",bsText:"Two-storey house in a mixed system: reinforced concrete footings, ground beams and columns, with a timber floor, walls and roof. From design to the finished build: construction plans, 3D structure, beams, roof and stair detail.",bsC1:"Reinforced concrete",bs1:"Finished build · front and porch",bs2:"Living room, kitchen and mezzanine",bs3:"Ground floor: stair and timber floor above",bs4:"Mezzanine: exposed roof and double height",bs5:"Stair seen from the upper floor",bs6:"Timber stair: treads and handrail",bs7:"Upper-floor suite",bs8:"3D structure: foundation, columns and beams",bs9:"Upper-floor construction plan",bs10:"Upper-floor beams and joists",bs11:"Roof structure: plan and 3D",bs12:"Stair detail",pb1:"Exterior render · glazed gable",pb2:"Exterior render · porch",pb3:"Ground-floor construction plan",pb4:"Section A",pb5:"Timber structure: plan and 3D",pb6:"Timber stair detail",mzTitle:"Timber house with mezzanine · 139.60 m² · Porto Belo, SC",mzText:"Two-level timber house with a double-height living room, mezzanine and porch, from design to the finished build in 2026: construction plan, sections, timber structure with cutting list, stair detail and renders.",mz1:"Exterior · porch and glazed gable",mz2:"Double-height living room and timber stair",mz3:"Ground floor seen from the stair",mz5:"Double height seen from the mezzanine",mz4:"Mezzanine with large windows",mz6:"Exposed roof: timber beams and boarding",fo1:"Finished build · front",fo2:"Finished build · side porch",fo3:"Porch: timber structure and cladding",fo4:"Interior: exposed roof, living room and kitchen",ftEyebrow:"Project",ftTitle:"Timber house · 161 m² · Agudos do Sul, PR",ftText:"Single-family timber house with a wraparound porch, from design to the finished build in 2026: architecture, timber structure, roof with material schedule, details and client renders.",ftC1:"Timber structure",ftC2:"Roof",ftC3:"Take-off",ft1:"Exterior render · aerial view",ft2:"Exterior render · front elevation",ft3:"3D roof model",ft4:"Front and rear elevations",ft5:"Sections AA and BB",ft6:"Timber structure plan",ft7:"Roof plan: rafters and battens",artTitle:"Projects registered with CREA-SC",plTitle:"Structural design drawings",pl1:"Footing layout and formwork plans · house with suspended slab · Porto Belo, SC · 2026",pl2:"Analysis model and 3D view of the structure",pl3:"Setting-out and formwork plan · two-storey building",pl4:"3D foundation, footings, columns, sections and ground beam · two-storey building",kYear:"Year",nCalc:"structural design",nCoord:"coordination",nSites:"~60 builds",ty:{W:"Timber house",M:"Mixed-system house",A:"Masonry house",H:"Residential plumbing and drainage",C:"Reinforced concrete structure"},sc:{pe:"Design and construction",e:"Construction",arq:"Architectural design",ele:"Electrical",hid:"Plumbing and drainage",rad:"Raft foundation",con:"Reinforced concrete",mad:"Timber structure",mem:"Specifications"},brandRole:"Civil Engineer",navProjects:"Projects",navProcess:"Process",navSkills:"Skills",navCareer:"Experience",navSoftware:"Software",navContact:"Contact",
+eyebrow:"Engineering portfolio · Industrialized timber housing",h1:"From the BIM model to the finished home.",lead:"Civil Engineer with 10+ years in construction. Architectural and structural design in Revit, quantity take-off and estimating, scheduling and management of ~60 concurrent builds. Looking for a role in Spain.",ctaProjects:"View projects",
+sheetTitle:"Data sheet",sheetBase:"Base",sheetBaseV:"Joinville (Brazil) → Spain",sheetSpec:"Focus",sheetSpecV:"BIM · Technical office · Site management",sheetTools:"Tools",sheetLang:"Languages",sheetLangV:"Native Portuguese · Basic Spanish (studying) · Basic English",sheetAvail:"Availability",sheetAvailV:"Immediate · on-site or remote",
+s1:"builds managed concurrently",s2:"under registered technical responsibility (CREA-SC)",s3:"builder's annual revenue",s4:"years in construction",
+fitIdx:"Profile",fitTitle:"What I bring, by role",fitSub:"Three quick readings of the same profile, depending on what the company needs.",fitA:"BIM / Revit",fitA1:"Architectural and structural design in Revit and AutoCAD",fitA2:"Families, templates and federated ARC/STR/MEP model",fitA3:"Drawings, model-based take-offs and renders",fitB:"Technical office / Estimating",fitB1:"Quantity take-off, material quantification and construction estimates",fitB2:"Cost control by phase and own price database",fitB3:"Bids, procurement and supplier negotiation",fitC:"Site management",fitC1:"~60 concurrent builds, ~5 handovers a month",fitC2:"MS Project scheduling and crew coordination",fitC3:"Client relationship from contract to handover",
+projTitle:"Projects under my technical responsibility",projSub:"Projects and services under my technical responsibility, registered with CREA-SC, Brazil's engineering board (2025–2026). Client names and addresses omitted; proof available on request.",filterLabel:"Filter by system",fAll:"All",fBim:"Timber",fCost:"Mixed",fSite:"Masonry and other",
+
+
+kArea:"Area",
+cTimber:"Timber structure",cBudget:"Estimate",cAssemblyMgmt:"Assembly management",cQty:"Take-offs",cCostCtrl:"Cost control",cLogistics:"Logistics",cCrews:"Assembly crews",cHandover:"Client handover",cPriceDb:"Price database",cPhase:"Control by phase",cFamilies:"Families",cTemplates:"Templates",
+procTitle:"How I work: the full cycle",procSub:"The six phases I cover on every home.",st1:"Design",st1d:"Architectural and structural in Revit (BIM) and AutoCAD.",st2:"Take-off",st2d:"Material quantities and estimate by phase.",st3:"Scheduling",st3d:"Programme and tracking in MS Project.",st4:"Procurement & logistics",st4d:"Suppliers, inventory and site deliveries.",st5:"Assembly",st5d:"Crew coordination and quality control.",st6:"Handover",st6d:"Direct client relationship to key delivery.",
+skTitle:"Skills",skSub:"Tools and areas of work.",skA:"Design and BIM",skB:"Technical office and site",skPlan:"scheduling",skSite:"Site management",skProc:"Procurement & logistics",skSuppliers:"suppliers",skTeams:"Team management",skAssembly:"assembly",
+trTitle:"Experience",t1w:"Jan 2021 — present",t1t:"Civil Engineer · Alliance Casas Pré-Fabricadas",t1d:"Technical management of ~60 concurrent industrialized timber homes (~80 m²/unit, ~5 handovers/month). Revit and AutoCAD design, take-offs and estimating, MS Project, procurement, logistics and client handover. Designed and rolled out the company's own ERP.",t2w:"May 2026 — present",t2t:"Full-stack Developer (own project) · Centtra",t2d:"Obra Centtra: SaaS for industrialized-housing builders. ~60 modules, 20 daily active users.",t3t:"Administrative Assistant · Rocha e Filhos Building Materials",t3d:"Customer service, delivery notes and checking of loading and unloading, invoicing (NF-e), purchasing and team management.",t4t:"Engineering Intern · Hoffmann Engenharia",t4d:"Architectural and structural design, client service and site follow-up.",t5t:"B.Sc. Civil Engineering · UniSociesc — Systems Analysis & Development · Univille (in progress)",t5d:"Graduated December 2024. Professional registration CREA-SC 216930-5. Courses: Revit architecture, structure and plumbing, AutoCAD basic and advanced, InfraWorks and Civil 3D (KeepCad) · Revit for residential electrical design and MS Project for construction, 40 h (engenhaBIM).",
+swEyebrow:"Differentiator",swTitle:"I took the site into software",swText:"In 2026 I designed and built from scratch the ERP the builder now runs on: CRM, estimates, contracts with e-signature, schedule and site diary, purchasing, inventory, finance, mobile app and AI assistant.",swCta:"View software portfolio ↗",swL1:"modules: 60 · daily users: 20",swL2:"estimates · contracts · schedule · purchasing",swL3:"finance · commissions · client portal",
+ctTitle:"Contact",ctText:"Available for a full-time role in Spain (on-site or remote) in BIM, technical office, estimating or construction technology.",ctLoc:"Location",ctLocV:"Joinville, Brazil · destination: Spain",
+g1:"Foundations",g2:"Structure",g3:"Envelope",g4:"MEP",g5:"Finishes",b1:"Foundations",b2:"Timber structure",b3:"Roof",b4:"MEP",b5:"Finishes"},
+pt:{pl5:"Cortes, vigas, sapatas, pilares e detalhes da laje",kCity:"Cidade",kType:"Tipo",kScope:"Escopo",ptTitle:"Sobrado · 215,15 m² · Tijucas, SC",ptText:"Sobrado em sistema misto, em execução: estrutura de concreto armado (sapatas, pilares, vigas e lajes) com telhado, mezanino e revestimentos em madeira. Projeto arquitetônico e estrutural completos, renders de apresentação e acompanhamento da obra.",pt1:"Render de apresentação · fachada principal",pt2:"Render de apresentação · vista da rua",pt3:"Render de apresentação · fachada lateral",pt4:"Render interno · pé-direito duplo e pano de vidro",pt5:"Render interno · escada e mezanino",pt6:"Obra em execução: estrutura de concreto e telhado de madeira",pt7:"Obra em execução: estrutura do telhado",pt8:"Projeto arquitetônico: planta baixa e planta superior",pt9:"Cortes A e B",pt10:"Planta de cobertura e 3D",pt11:"Projeto estrutural: plantas de fôrma",pt12:"Projeto estrutural: cortes e 3D",skPm:"gestão de tarefas",skC:"IA e software",ai1:"IA generativa no trabalho do dia a dia",ai1n:"documentos · análises",ai2:"Desenvolvimento de software com IA",ai3:"Assistente de IA integrado ao ERP",ai4:"Automação de processos e relatórios",ai4n:"fluxos",tjTitle:"Residência em madeira · 66,88 m² · Tijucas, SC",tjText:"Residência em madeira com telhado de duas águas desencontradas e estrutura aparente na sala, do projeto à obra: planta executiva com lista de peças, cortes com planta de forro e estrutura do telhado com quantitativos.",tj1:"Obra · fachada com janelas altas",tj2:"Sala: telhado aparente com tirante de madeira",tj3:"Cozinha integrada sob o telhado aparente",tj4:"Cozinha e jantar: estrutura do telhado",tj5:"Detalhe do revestimento interno em madeira",tj6:"Planta baixa executiva e perspectiva",tj7:"Cortes e planta de forro",tj8:"Estrutura do telhado: planta, 3D e quantitativos",elTitle:"Residência compacta em madeira · 53,55 m² · Porto Belo, SC",elText:"Pacote completo de projetos de 2026 para uma residência compacta em madeira, registrado no CREA-SC: arquitetônico com renders, fundação em concreto armado (sapatas, baldrame e pilares com detalhamento das armaduras) e hidrossanitário com fossa, filtro anaeróbio e sumidouro.",el1:"Render externo · vista aérea",el2:"Render externo · fachada lateral",el3:"Render externo · entrada e pergolado",el4:"Render externo · fundos",el5:"Planta humanizada",el6:"Projeto arquitetônico: planta, fachada e 3D",el7:"Hidrossanitário: implantação, detalhamento e corte",el8:"Projeto estrutural: sapatas, vigas, pilares e armaduras",hmTitle:"Alguns projetos",hmSub:"Uma amostra de obras, do projeto à entrega. Não é a lista completa: há mais projetos, pranchas e obras registradas no painel, e outros serão acrescentados.",allBtn:"Ver mais projetos",allNote:"Amostra: {p} projetos documentados · {w} obras registradas no CREA-SC (2025–2026) · 1.440 m²",allIdx:"Painel de projetos",allTitle:"Seleção de projetos",allSub:"Uma parte do trabalho realizado, não o total. Escolha um projeto para ver renders, fotos de obra e pranchas; mais abaixo, as obras registradas no CREA-SC e as pranchas estruturais.",back:"Voltar ao portfólio",seeProj:"Ver projeto",flTitle:"Residência em madeira · 111,82 m² · Florianópolis, SC",flText:"Pacote de projetos de 2026 para uma residência em madeira, registrado no CREA-SC: planta executiva, estrutura do telhado com quantitativos, projeto elétrico com diagrama unifilar e quadro de cargas, e projeto hidrossanitário com tratamento no lote.",flC1:"Elétrica",flC2:"Hidrossanitário",fl1:"Planta baixa executiva e perspectiva",fl2:"Estrutura do telhado: caibros e sarrafos",fl3:"Projeto elétrico: planta, diagrama unifilar e entrada de energia",fl4:"Hidrossanitário: rede, ETE e sumidouros",imTitle:"Residência compacta em madeira · 42 m² · Imbituba, SC",imText:"Residência compacta em madeira com telhado de duas águas desencontradas e pergolado na entrada, do render à obra: planta executiva com lista de peças, cortes e estrutura do telhado com quantitativo de madeira e telha.",im1:"Render externo · entrada e pergolado",im2:"Obra em fase final · mesma vista",im3:"Render externo · lateral e fundos",im4:"Planta baixa executiva com lista de peças",im5:"Cortes",im6:"Estrutura do telhado com quantitativos",bsTitle:"Sobrado em madeira · 137,25 m² · Balneário Barra do Sul, SC",bsText:"Sobrado em sistema misto: sapatas, baldrame e pilares de concreto armado, com assoalho, paredes e telhado em madeira. Do projeto à obra concluída: plantas executivas, estrutura em 3D, vigas, telhado e detalhe da escada.",bsC1:"Concreto armado",bs1:"Obra concluída · fachada e varanda",bs2:"Sala, cozinha e mezanino",bs3:"Térreo: escada e assoalho de madeira",bs4:"Mezanino: telhado aparente e pé-direito duplo",bs5:"Escada vista do pavimento superior",bs6:"Escada de madeira: degraus e corrimão",bs7:"Suíte do pavimento superior",bs8:"Estrutura em 3D: fundação, pilares e vigas",bs9:"Planta executiva do pavimento superior",bs10:"Vigas e barroteamento do pavimento superior",bs11:"Estrutura do telhado: planta e 3D",bs12:"Detalhe da escada",pb1:"Render externo · fachada envidraçada",pb2:"Render externo · varanda",pb3:"Planta baixa executiva",pb4:"Corte A",pb5:"Estrutura de madeira: planta e 3D",pb6:"Detalhe da escada de madeira",mzTitle:"Residência em madeira com mezanino · 139,60 m² · Porto Belo, SC",mzText:"Residência em madeira de dois níveis, com pé-direito duplo, mezanino e varanda, do projeto à obra concluída em 2026: planta executiva, cortes, estrutura de madeira com lista de peças, detalhe da escada e renders.",mz1:"Exterior · varanda e fachada envidraçada",mz2:"Sala com pé-direito duplo e escada de madeira",mz3:"Térreo visto da escada",mz5:"Pé-direito duplo visto do mezanino",mz4:"Mezanino com janelões",mz6:"Telhado aparente: vigas e forro de madeira",fo1:"Obra concluída · fachada",fo2:"Obra concluída · varanda lateral",fo3:"Varanda: estrutura e revestimento em madeira",fo4:"Interior: telhado aparente, sala e cozinha",ftEyebrow:"Projeto",ftTitle:"Residência em madeira · 161 m² · Agudos do Sul, PR",ftText:"Residência unifamiliar em madeira com varanda no entorno, do projeto à obra concluída em 2026: arquitetura, estrutura de madeira, telhado com lista de materiais, detalhamento e renders para o cliente.",ftC1:"Estrutura de madeira",ftC2:"Telhado",ftC3:"Quantitativos",ft1:"Render externo · vista aérea",ft2:"Render externo · fachada frontal",ft3:"Modelo 3D do telhado",ft4:"Fachadas frontal e fundos",ft5:"Cortes AA e BB",ft6:"Planta da estrutura de madeira",ft7:"Planta do telhado: caibros e sarrafos",artTitle:"Obras registradas no CREA-SC",plTitle:"Pranchas de projeto estrutural",pl1:"Locação das sapatas e plantas de fôrma · residência com laje · Porto Belo, SC · 2026",pl2:"Modelo de cálculo e vista 3D da estrutura",pl3:"Planta de locação e planta de fôrma · edificação de dois pavimentos",pl4:"Fundação em 3D, sapatas, pilares, cortes e viga baldrame · edificação de dois pavimentos",kYear:"Ano",nCalc:"cálculo estrutural",nCoord:"coordenação",nSites:"~60 obras",ty:{W:"Residência em madeira",M:"Residência em sistema misto",A:"Residência em alvenaria",H:"Rede hidrossanitária residencial",C:"Estrutura de concreto armado"},sc:{pe:"Projeto e execução",e:"Execução",arq:"Projeto arquitetônico",ele:"Elétrica",hid:"Hidrossanitária",rad:"Radier",con:"Concreto armado",mad:"Estrutura de madeira",mem:"Memorial descritivo"},brandRole:"Engenheiro Civil",navProjects:"Projetos",navProcess:"Processo",navSkills:"Competências",navCareer:"Trajetória",navSoftware:"Software",navContact:"Contato",
+eyebrow:"Portfólio de engenharia · Casas industrializadas em madeira",h1:"Do modelo BIM à entrega da casa.",lead:"Engenheiro Civil com mais de 10 anos em construção. Projeto arquitetônico e estrutural em Revit, levantamentos e orçamentos, planejamento e gestão de ~60 obras simultâneas. Busco uma vaga na Espanha.",ctaProjects:"Ver projetos",
+sheetTitle:"Ficha técnica",sheetBase:"Base",sheetBaseV:"Joinville (Brasil) → Espanha",sheetSpec:"Especialidade",sheetSpecV:"BIM · Escritório técnico · Gestão de obra",sheetTools:"Ferramentas",sheetLang:"Idiomas",sheetLangV:"Português nativo · Espanhol básico (em formação) · Inglês básico",sheetAvail:"Disponibilidade",sheetAvailV:"Imediata · presencial ou remoto",
+s1:"obras geridas em simultâneo",s2:"sob responsabilidade técnica registrada (CREA-SC)",s3:"faturamento anual da construtora",s4:"anos em construção",
+fitIdx:"Perfil",fitTitle:"O que eu entrego, por função",fitSub:"Três leituras rápidas do mesmo perfil, conforme o que a empresa procura.",fitA:"BIM / Revit",fitA1:"Projeto arquitetônico e estrutural em Revit e AutoCAD",fitA2:"Famílias, templates e modelo federado ARQ/EST/MEP",fitA3:"Pranchas, quantitativos pelo modelo e renders",fitB:"Escritório técnico / Orçamentos",fitB1:"Levantamento de quantitativos e orçamento de obra",fitB2:"Controle de custos por fase e base de preços própria",fitB3:"Propostas, compras e negociação com fornecedores",fitC:"Gestão de obra",fitC1:"~60 obras simultâneas, ~5 entregas por mês",fitC2:"Planejamento no MS Project e coordenação de equipes",fitC3:"Relação com o cliente do contrato à entrega",
+projTitle:"Obras sob responsabilidade técnica",projSub:"Obras e serviços sob minha responsabilidade técnica, registrados no CREA-SC (2025–2026). Nomes de clientes e endereços omitidos; comprovação disponível mediante solicitação.",filterLabel:"Filtrar por sistema",fAll:"Todos",fBim:"Madeira",fCost:"Misto",fSite:"Alvenaria e outros",
+
+
+kArea:"Área",
+cTimber:"Estrutura de madeira",cBudget:"Orçamento",cAssemblyMgmt:"Direção de montagem",cQty:"Quantitativos",cCostCtrl:"Controle de custos",cLogistics:"Logística",cCrews:"Equipes de montagem",cHandover:"Entrega ao cliente",cPriceDb:"Base de preços",cPhase:"Controle por fase",cFamilies:"Famílias",cTemplates:"Templates",
+procTitle:"Como trabalho: o ciclo completo",procSub:"As seis fases que cubro em cada casa.",st1:"Projeto",st1d:"Arquitetônico e estrutural em Revit (BIM) e AutoCAD.",st2:"Quantitativos",st2d:"Levantamento de materiais e orçamento por fase.",st3:"Planejamento",st3d:"Cronograma e acompanhamento no MS Project.",st4:"Compras e logística",st4d:"Fornecedores, estoque e entregas na obra.",st5:"Montagem",st5d:"Coordenação de equipes e controle de qualidade.",st6:"Entrega",st6d:"Relação direta com o cliente até a chave.",
+skTitle:"Competências",skSub:"Ferramentas e áreas de atuação.",skA:"Projeto e BIM",skB:"Escritório técnico e obra",skPlan:"planejamento",skSite:"Gestão de obra",skProc:"Compras e logística",skSuppliers:"fornecedores",skTeams:"Gestão de equipes",skAssembly:"montagem",
+trTitle:"Trajetória",t1w:"jan 2021 — atual",t1t:"Engenheiro Civil · Alliance Casas Pré-Fabricadas",t1d:"Gestão técnica de ~60 obras simultâneas de casas industrializadas em madeira (~80 m²/unidade, ~5 entregas/mês). Projeto em Revit e AutoCAD, quantitativos e orçamentos, MS Project, compras, logística e entrega ao cliente. Projetei e implantei o ERP próprio da empresa.",t2w:"mai 2026 — atual",t2t:"Desenvolvedor Full-Stack (projeto próprio) · Centtra",t2d:"Obra Centtra: SaaS para construtoras de casas industrializadas. ~60 módulos, 20 usuários ativos por dia.",t3t:"Administrativo · Rocha e Filhos Material de Construção",t3d:"Atendimento ao público, romaneios e conferência de cargas e descargas, emissão de NF-e, compras e gerenciamento da equipe.",t4t:"Auxiliar de Engenharia (estágio) · Hoffmann Engenharia",t4d:"Projetos arquitetônicos e estruturais, atendimento ao cliente e acompanhamento de obras.",t5t:"Engenharia Civil · UniSociesc — Análise e Desenvolvimento de Sistemas · Univille (em curso)",t5d:"Formado em dezembro de 2024. Registro profissional CREA-SC 216930-5. Cursos: Revit arquitetônico, estrutural e hidrossanitário, AutoCAD básico e avançado, InfraWorks e Civil 3D (KeepCad) · Revit para projetos elétricos residenciais e MS Project para obras, 40 h (engenhaBIM).",
+swEyebrow:"Diferencial",swTitle:"Levei a obra para o software",swText:"Em 2026 projetei e desenvolvi do zero o ERP que hoje opera a construtora: CRM, orçamentos, contratos com assinatura digital, cronograma e diário de obra, compras, estoque, financeiro, app mobile e assistente de IA.",swCta:"Ver portfólio de software ↗",swL1:"módulos: 60 · usuários/dia: 20",swL2:"orçamentos · contratos · cronograma · compras",swL3:"financeiro · comissões · portal do cliente",
+ctTitle:"Contato",ctText:"Disponível para vaga em tempo integral na Espanha (presencial ou remoto) em BIM, escritório técnico, orçamentos ou tecnologia aplicada à construção.",ctLoc:"Localização",ctLocV:"Joinville, Brasil · destino: Espanha",
+g1:"Fundação",g2:"Estrutura",g3:"Vedações",g4:"Instalações",g5:"Acabamentos",b1:"Fundação",b2:"Estrutura madeira",b3:"Cobertura",b4:"Instalações",b5:"Acabamentos"}
+};
+// type, city, year, area m², role, scopes. Source: ARTs registered with CREA-SC (no client data kept here)
+const WORKS=[["A","Joinville",2025,63.00,"e",[],"w-jv63"],["M","São Francisco do Sul",2025,85.50,"pe",[],"wf-sfs"],["W","Itapema",2025,95.70,"pe",["arq"]],["M","Tijucas",2025,80.50,"pe",["arq","ele","hid","con"]],["W","Balneário Barra do Sul",2025,80.80,"pe",["arq","ele","hid","mad"]],["M","Navegantes",2025,97.87,"pe",["ele","hid","con"]],["M","Itajaí",2025,80.25,"pe",["rad","ele","hid"]],["M","Joinville",2025,103.50,"pe",["arq","rad","ele","hid"]],["M","Balneário Barra do Sul",2025,103.63,"pe",[]],["M","Joinville",2025,136.90,"pe",["rad","ele","hid"],"wf-jv136"],["H","Florianópolis",2026,111.82,"pe",["mem"],"fl-planta",4],["M","Joinville",2026,90.85,"pe",[]],["M","Joinville",2026,95.84,"pe",["ele","hid","con"]],["A","Balneário Barra do Sul",2026,56.00,"pe",["con","mad","ele","hid"]],["C","Porto Belo",2026,63.00,"pe",[]],["M","Blumenau",2026,94.50,"pe",["ele","hid"]]];
+function renderWorks(d,l){
+  const nf=new Intl.NumberFormat(l==='en'?'en-US':'de-DE',{minimumFractionDigits:2,maximumFractionDigits:2});
+  document.getElementById('works').innerHTML=WORKS.filter(o=>o[6]).map(o=>{
+    const g=o[0]==='W'||o[0]==='M'?o[0]:'O', a=nf.format(o[3]);
+    return `<article class="card" data-roles="${g}"><div class="thumb"><span class="tag">${o[1]}, SC</span>${o[6]?`<img class="wimg${o[6].startsWith("wf-")?" ph":""}" src="img/${o[6]}.jpg" alt="" loading="lazy">`:""}<svg${o[6]?" hidden":""} viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg"><g stroke="#111214" stroke-width="1.5" fill="none"><rect x="70" y="120" width="260" height="120"/><path d="M60 122 L200 50 L340 122"/><rect x="95" y="155" width="50" height="50"/><rect x="255" y="155" width="50" height="50"/><rect x="180" y="175" width="40" height="65"/></g><g stroke="#9aa0a6" stroke-width="1" fill="none"><line x1="70" y1="262" x2="330" y2="262"/><line x1="70" y1="256" x2="70" y2="268"/><line x1="330" y1="256" x2="330" y2="268"/></g><text x="200" y="283" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="11" fill="#6f737a">${a} m²</text></svg></div><div class="body"><h3>${d.ty[o[0]]}</h3><div class="meta">${o[1]}, SC · ${d.sc[o[4]]}</div><div class="specs"><div class="spec"><div class="v">${a} m²</div><div class="k">${d.kArea}</div></div><div class="spec"><div class="v">${o[2]}</div><div class="k">${d.kYear}</div></div></div><div class="chips">${o[5].map(k=>`<span class="chip">${d.sc[k]}</span>`).join('')}</div>${o[7]!=null?`<a class="wgo" href="#todos-${o[7]}">${d.seeProj} →</a>`:""}</div></article>`}).join('');
+  document.getElementById('worksList').innerHTML=`<table><thead><tr><th>${d.kCity}</th><th>${d.kType}</th><th>${d.kScope}</th><th class="num">${d.kArea}</th><th class="num">${d.kYear}</th></tr></thead><tbody>`+WORKS.filter(o=>!o[6]).map(o=>{
+    const g=o[0]==='W'||o[0]==='M'?o[0]:'O';
+    return `<tr class="card" data-roles="${g}"><td>${o[1]}, SC</td><td>${d.ty[o[0]]}</td><td>${[d.sc[o[4]],...o[5].map(k=>d.sc[k])].join(' · ')}</td><td class="num">${nf.format(o[3])} m²</td><td class="num">${o[2]}</td></tr>`}).join('')+'</tbody></table>';
+  document.querySelectorAll('.filter .f').forEach(x=>x.classList.toggle('on',x.dataset.f==='all'));
+}
+const PROJ=[["ag-render-1","ftTitle","ftText"],["pb-render-1","mzTitle","mzText"],["bs-1","bsTitle","bsText"],["im-render-1","imTitle","imText"],["fl-thumb","flTitle","flText"],["el-render-1","elTitle","elText"],["tj-5","tjTitle","tjText"],["pt-r1","ptTitle","ptText"]];
+const FEATURED=[7,0,3];
+function selProj(i){const fs=[...document.querySelectorAll('#feats .feat')],bs=[...document.querySelectorAll('.ftab')];
+  bs.forEach((x,j)=>{x.classList.toggle('on',j===i);x.setAttribute('aria-selected',j===i);});
+  fs.forEach((f,j)=>f.classList.toggle('on',j===i));}
+document.getElementById('feats').classList.add('js');
+document.querySelectorAll('.ftab').forEach(b=>b.addEventListener('click',()=>{selProj(+b.dataset.t);history.replaceState(null,'','#todos-'+b.dataset.t);}));
+function route(){const m=location.hash.match(/^#todos(?:-(\d+))?$/);
+  document.body.classList.toggle('all',!!m);
+  if(m){selProj(m[1]?Math.min(+m[1],PROJ.length-1):0);window.scrollTo(0,0);}
+  else if(location.hash.length>1){const el=document.querySelector(location.hash);if(el)el.scrollIntoView();}}
+window.addEventListener('hashchange',route);
+(function(){const lb=document.getElementById('lb'),im=lb.querySelector('img');
+  const close=()=>{lb.classList.remove('on');im.removeAttribute('src');};
+  document.addEventListener('click',e=>{const g=e.target.closest('.plans img, .card .wimg'); if(g){im.src=g.currentSrc||g.src;lb.classList.add('on');}});
+  lb.addEventListener('click',close);
+  document.addEventListener('keydown',e=>{if(e.key==='Escape')close();});})();
+function renderHome(d){
+  document.getElementById('hfeat').innerHTML=FEATURED.map((i,n)=>{const p=PROJ[i];
+    return `<a class="hcard" href="#todos-${i}"><img src="img/${p[0]}.jpg" alt=""><div class="b"><span class="k">${String(n+1).padStart(2,'0')} · ${d.ftEyebrow}</span><h3>${d[p[1]]}</h3><p>${d[p[2]]}</p><span class="go">${d.seeProj} →</span></div></a>`;}).join('');
+  document.getElementById('hallN').textContent=d.allNote.replace('{p}',PROJ.length).replace('{w}',WORKS.length);
+}
+function setLang(l){
+  const d=I18N[l]||I18N.es;
+  document.documentElement.lang=l;
+  renderWorks(d,l); renderHome(d);
+  document.querySelectorAll('[data-i18n]').forEach(e=>{const k=e.dataset.i18n; if(typeof d[k]==='string') e.textContent=d[k];});
+  document.querySelectorAll('[data-i18n-svg]').forEach(e=>{const k=e.dataset.i18nSvg; if(d[k]!=null) e.textContent=d[k];});
+  document.querySelectorAll('.lang button').forEach(b=>b.classList.toggle('on',b.dataset.lang===l));
+  try{localStorage.setItem('lr-lang',l);}catch(e){}
+}
+document.querySelectorAll('.lang button').forEach(b=>b.addEventListener('click',()=>setLang(b.dataset.lang)));
+let start='es'; try{start=localStorage.getItem('lr-lang')||'es';}catch(e){}
+setLang(start); route();
+document.querySelectorAll('.scale').forEach(s=>{const n=+s.dataset.n; s.innerHTML=Array.from({length:10},(_,i)=>`<i class="${i<n?'on':''}"></i>`).join('');});
+document.querySelectorAll('.filter .f').forEach(b=>b.addEventListener('click',()=>{
+  document.querySelectorAll('.filter .f').forEach(x=>x.classList.remove('on')); b.classList.add('on');
+  const f=b.dataset.f; document.querySelectorAll('.card').forEach(c=>c.classList.toggle('dim', f!=='all' && !(c.dataset.roles||'').split(' ').includes(f)));
+}));
+</script>
+</body>
+</html>
